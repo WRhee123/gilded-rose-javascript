@@ -18,7 +18,7 @@ describe("updateQuality", () => {
   });
 
   it('checks if sellIn is less than zero and degrades quality twice as fast', () => {
-    const testItem = new Item('doubleQuality', -1, 2);
+    const testItem = new basicItem('doubleQuality', -1, 2);
     items.push(testItem);
 
     updateQuality();
@@ -28,7 +28,7 @@ describe("updateQuality", () => {
   })
   
   it('check if quality of is NOT negative', () => {
-    const testItem = new Item('notNegative', 2, 1);
+    const testItem = new basicItem('notNegative', 2, 1);
     items.push(testItem);
 
     updateQuality();
@@ -45,7 +45,7 @@ describe("updateQuality", () => {
   })
 
   it('quality of item is never more than 50', () => {
-    const testItem = new Item('qualityNoMoreThan50', 2, 50);
+    const testItem = new basicItem('qualityNoMoreThan50', 2, 50);
     items.push(testItem)
     updateQuality();
     expect(testItem.sellIn).toBe(1);

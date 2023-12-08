@@ -12,7 +12,8 @@ export class basicItem extends Item {
   }
   update() {
     if(this.sellIn < 0) {
-      this.quality -= 2
+      this.quality -= 2;
+      this.sellIn --;
     } else if(this.sellIn > 0) {
       this.sellIn --;
       this.quality --;
@@ -79,11 +80,11 @@ export class conjuredItem extends Item{
 export let items = [];
 
 items.push(new basicItem("+5 Dexterity Vest", 10, 20));
-items.push(new Item("Aged Brie", 2, 0));
-items.push(new Item("Elixir of the Mongoose", 5, 7));
-items.push(new Item("Sulfuras, Hand of Ragnaros", 0, 80));
-items.push(new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20));
-items.push(new Item("Conjured Mana Cake", 3, 6));
+items.push(new agedBrie("Aged Brie", 2, 0));
+items.push(new basicItem("Elixir of the Mongoose", 5, 7));
+items.push(new sulfuras("Sulfuras, Hand of Ragnaros", 0, 80));
+items.push(new backstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20));
+items.push(new conjuredItem("Conjured Mana Cake", 3, 6));
 
 export const updateQuality = () => {
   for (let item of items) {
@@ -138,4 +139,4 @@ export const updateQuality = () => {
   }
 };
 
-updateQuality();
+// updateQuality();
