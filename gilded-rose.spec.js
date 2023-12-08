@@ -1,9 +1,14 @@
 import { expect, describe, it } from "vitest";
 import { Item, items, updateQuality } from "./gilded-rose.js";
+import { basicItem } from "./gilded-rose.js";
+import { agedBrie } from "./gilded-rose.js";
+import { sulfuras } from "./gilded-rose.js";
+import { backstagePass } from "./gilded-rose.js";
+import { conjuredItem } from "./gilded-rose.js";
 
 describe("updateQuality", () => {
   it("reduces quality and sellIn of basic items by 1", () => {
-    const testItem = new Item("basic", 5, 3);
+    const testItem = new basicItem("basic", 5, 3);
     items.push(testItem);
 
     updateQuality();
@@ -32,7 +37,7 @@ describe("updateQuality", () => {
   })
 
   it('Aged Brie quality increases as sellIn decreases', () => {
-    const testItem = new Item('Aged Brie', 2, 0);
+    const testItem = new agedBrie('Aged Brie', 2, 0);
     items.push(testItem);
     updateQuality();
     expect(testItem.sellIn).toBe(1);
@@ -48,7 +53,7 @@ describe("updateQuality", () => {
   })
 
   it('Sulfuras, Hand of Ragnaros never has to be sold nor does it decrease in quality', () => {
-    const testItem = new Item("Sulfuras, Hand of Ragnaros", 0, 80);
+    const testItem = new sulfuras("Sulfuras, Hand of Ragnaros", 0, 80);
     items.push(testItem);
     updateQuality();
     expect(testItem.sellIn).toBe(0);
@@ -56,7 +61,7 @@ describe("updateQuality", () => {
   })
 
   it('Backstage passes to a TAFKAL80ETC concert, increase in quality as its sellIn value decreases', () => {
-    const testItem = new Item("Backstage passes to a TAFKAL80ETC concert", 15, 20);
+    const testItem = new backstagePass("Backstage passes to a TAFKAL80ETC concert", 15, 20);
     let sellInPass = testItem.sellIn;
     let qualityPass = testItem.quality;
     items.push(testItem);
@@ -74,7 +79,16 @@ describe("updateQuality", () => {
     }
   })
 
-  it('')
+  it('conjured items degrade in quality twice as fast as normal items', () => {
+    const testItem = new conjuredItem("Conjured Mana Cake", 3, 6);
+    let sellIn = testItem.sellIn;
+    let quality = testItem.quality;
+    items.push(testItem);
+    updateQuality();
+    if(quality){
+      
+    }
+  })
 });
 
 
